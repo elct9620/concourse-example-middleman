@@ -10,6 +10,9 @@ image_resource:
 inputs:
 - name: middleman
 
+outputs:
+- name: middleman
+
 run:
   path: sh
   args:
