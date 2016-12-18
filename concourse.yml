@@ -15,7 +15,7 @@ jobs:
       - get: middleman
         trigger: true
       - task: build
-        file: concourse/build-task.yml
+        file: middleman/concourse/build-task.yml
       - put: gh-release
         params:
           name: middleman/name

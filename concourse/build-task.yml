@@ -15,6 +15,9 @@ run:
   args:
     - -exc
     - |
+      apk --update add build-base git libffi-dev libxml2-dev libxslt-dev \
+               nodejs openssl-dev ruby ruby-bigdecimal  \
+               ruby-dev ruby-io-console ruby-json zlib-dev
       cd middleman
       bundle install
       bundle exec middleman build
