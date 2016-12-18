@@ -30,6 +30,6 @@ run:
       echo "Build - $VERSION" > ../build/name
       echo "Build Version: v1.0.0-$VERSION"
       echo "v1.0.0-$VERSION" > ../build/tag
-      tar -cvzf ../build/build-$BUILD_ID.tar.gz  build/*
+      tar -cvzf ../build/build-$VERSION.tar.gz  build/*
 
 
