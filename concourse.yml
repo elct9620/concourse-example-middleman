@@ -1,0 +1,25 @@
+resources:
+- name: middleman
+  type: git
+  source:
+    uri: https://github.com/elct9620/concourse-example-middleman.git
+- name: gh-release
+  type: github-release
+  source:
+    user: elct9620
+    repository: concourse-example-middleman
+
+jobs:
+  - name: build-and-release
+    plan:
+      - get: middleman
+        trigger: true
+      - task: build
+        file: concourse/build-task.yml
+      - put: gh-release
+        params:
+          name: middleman/name
+          tag: middleman/tag
+          globs:
+            - middleman/build-*.tar.gz
+

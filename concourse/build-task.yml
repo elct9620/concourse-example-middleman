@@ -1,0 +1,24 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: ruby
+    tag: '2.3-alpine'
+
+inputs:
+- name: middleman
+
+run:
+  path: sh
+  args:
+    - -exc
+    - |
+      cd middleman
+      bundle install
+      bundle exec middleman build
+      echo $BUILD_ID > name
+      echo $BUILD_ID > tag
+      tar -cvzf build-$BUILD_ID.tar.gz  build/*
+
