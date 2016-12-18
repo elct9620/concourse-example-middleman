@@ -11,7 +11,7 @@ inputs:
 - name: middleman
 
 outputs:
-- name: middleman
+- name: build
 
 run:
   path: sh

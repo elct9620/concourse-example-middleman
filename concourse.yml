@@ -18,8 +18,8 @@ jobs:
         file: middleman/concourse/build-task.yml
       - put: gh-release
         params:
-          name: middleman/name
-          tag: middleman/tag
+          name: build/name
+          tag: build/tag
           globs:
-            - middleman/build-*.tar.gz
+            - build/build-*.tar.gz
 
