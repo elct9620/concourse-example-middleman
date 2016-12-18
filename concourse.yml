@@ -8,6 +8,7 @@ resources:
   source:
     user: elct9620
     repository: concourse-example-middleman
+    access_token: {{github-token}}
 
 jobs:
   - name: build-and-release

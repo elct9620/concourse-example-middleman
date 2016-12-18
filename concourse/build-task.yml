@@ -24,8 +24,10 @@ run:
       cd middleman
       bundle install
       bundle exec middleman build
-      echo $BUILD_ID > ../build/name
-      echo $BUILD_ID > ../build/tag
+      echo "Build Name: $BUILD_ID"
+      echo "Build - $BUILD_ID" > ../build/name
+      echo "Build Version: $BUILD_ID.0.0"
+      echo "$BUILD_ID.0.0" > ../build/tag
       tar -cvzf ../build/build-$BUILD_ID.tar.gz  build/*
 
 
