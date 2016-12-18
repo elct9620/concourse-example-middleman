@@ -18,16 +18,18 @@ run:
   args:
     - -exc
     - |
+      env
       apk --update add build-base git libffi-dev libxml2-dev libxslt-dev \
                nodejs openssl-dev ruby ruby-bigdecimal  \
                ruby-dev ruby-io-console ruby-json zlib-dev
       cd middleman
       bundle install
       bundle exec middleman build
-      echo "Build Name: $BUILD_ID"
-      echo "Build - $BUILD_ID" > ../build/name
-      echo "Build Version: $BUILD_ID.0.0"
-      echo "$BUILD_ID.0.0" > ../build/tag
+      export VERSION=$(date +"%Y%m%d%H%M%S")
+      echo "Build Name: $VERSION"
+      echo "Build - $VERSION" > ../build/name
+      echo "Build Version: v1.0.0-$VERSION"
+      echo "v1.0.0-$VERSION" > ../build/tag
       tar -cvzf ../build/build-$BUILD_ID.tar.gz  build/*
 
 
