@@ -9,6 +9,7 @@ image_resource:
 
 inputs:
 - name: middleman
+- name: monster-db
 
 outputs:
 - name: build
@@ -22,14 +23,15 @@ run:
       apk --update add build-base git libffi-dev libxml2-dev libxslt-dev \
                nodejs openssl-dev ruby ruby-bigdecimal  \
                ruby-dev ruby-io-console ruby-json zlib-dev
+      cp monster-db/monsterdb.csv middleman/source
       cd middleman
       bundle install
       bundle exec middleman build
       export VERSION=$(date +"%Y%m%d%H%M%S")
-      echo "Build Name: $VERSION"
-      echo "Build - $VERSION" > ../build/name
-      echo "Build Version: v1.0.0-$VERSION"
-      echo "v1.0.0-$VERSION" > ../build/tag
-      tar -cvzf ../build/build-$VERSION.tar.gz  build/*
+      echo "Build Name: CR-$VERSION"
+      echo "Build - CR-$VERSION" > ../build/name
+      echo "Build Version: v1.0.0-CR-$VERSION"
+      echo "v1.0.0-CR-$VERSION" > ../build/tag
+      tar -cvzf ../build/build-CR-$VERSION.tar.gz  build/*
 
 
