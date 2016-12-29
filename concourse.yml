@@ -1,8 +1,20 @@
+resource_types:
+- name: game-db
+  type: docker-image
+  source:
+    repository: elct9620/concourse-example-custom-resource
+    tag: latest
+
 resources:
+- name: monster-db
+  type: game-db
+  source:
+    uri: http://192.168.2.102:3000
 - name: middleman
   type: git
   source:
     uri: https://github.com/elct9620/concourse-example-middleman.git
+    branch: custom-resource
 - name: gh-release
   type: github-release
   source:
@@ -11,16 +23,17 @@ resources:
     access_token: {{github-token}}
 
 jobs:
-  - name: build-and-release
-    plan:
-      - get: middleman
-        trigger: true
-      - task: build
-        file: middleman/concourse/build-task.yml
-      - put: gh-release
-        params:
-          name: build/name
-          tag: build/tag
-          globs:
-            - build/build-*.tar.gz
-
+- name: build-and-public
+  plan:
+  - get: monster-db
+    trigger: true
+  - get: middleman
+    trigger: true
+  - task: build
+    file: middleman/concourse/build-task.yml
+  - put: gh-release
+    params:
+      name: build/name
+      tag: build/tag
+      globs:
+        - build/build-*.tar.gz
