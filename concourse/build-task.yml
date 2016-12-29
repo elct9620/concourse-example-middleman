@@ -23,7 +23,7 @@ run:
       apk --update add build-base git libffi-dev libxml2-dev libxslt-dev \
                nodejs openssl-dev ruby ruby-bigdecimal  \
                ruby-dev ruby-io-console ruby-json zlib-dev
-      cp monster-db/monsterdb.csv middleman/source
+      cp monster-db/monsters.csv middleman/source/monsterdb.csv
       cd middleman
       bundle install
       bundle exec middleman build
